@@ -17,7 +17,30 @@ function onChange(newValue) {
   console.log("change", newValue);
 }
 
+const width = "90%";
+const javascript_sample = "function rot13(str) {\n" +
+    "    const alphabet = Array.from(\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\".split(\"\"));\n" +
+    "\n" +
+    "    function getNewIndex(character) {\n" +
+    "        const characterIndex = alphabet.indexOf(character);\n" +
+    "\n" +
+    "        if (characterIndex < 0) return character;\n" +
+    "        else {\n" +
+    "            let newIndex = characterIndex + 13;\n" +
+    "            if (newIndex >= alphabet.length) newIndex = newIndex - alphabet.length;\n" +
+    "            return alphabet[newIndex];\n" +
+    "        }\n" +
+    "    }\n" +
+    "\n" +
+    "    return Array.from(str.split(\"\"))\n" +
+    "                .map(character => getNewIndex(character))\n" +
+    "                .join(\"\");\n" +
+    "}\n" +
+    "\n" +
+    "console.log(rot13(\"SERR PBQR PNZC\"));\n"
+
 ReactDOM.render(<>
+
   <h2>Ace</h2>
   <Ace
       placeholder="Placeholder Text"
@@ -28,11 +51,9 @@ ReactDOM.render(<>
       fontSize={14}
       showPrintMargin={true}
       showGutter={true}
-      width="90%"
+      width={width}
       highlightActiveLine={true}
-      value={`function onLoad(editor) {
-  console.log("i've loaded");
-}`}
+      value={javascript_sample}
       setOptions={{
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
@@ -45,14 +66,14 @@ ReactDOM.render(<>
 
     <Monaco
          height="50vh"
-         width="90%"
+         width={width}
          defaultLanguage="javascript"
-         defaultValue="// some comment"
+         defaultValue={javascript_sample}
        />
 
    <h2>CodeMirror</h2>
     <CodeMirror
-      value='// some comment'
+      value={javascript_sample}
       options={{
         mode: codemirror_javascript,
         theme: 'material',
