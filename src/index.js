@@ -8,6 +8,11 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 import Monaco from "@monaco-editor/react";
 
+import {UnControlled as CodeMirror} from 'react-codemirror2'
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+require('codemirror/mode/javascript/javascript');
+
 
 function onChange(newValue) {
   console.log("change", newValue);
@@ -40,10 +45,21 @@ ReactDOM.render(<>
   <h2>Monaco</h2>
 
     <Monaco
-         height="90vh"
+         height="50vh"
          width="90%"
          defaultLanguage="javascript"
          defaultValue="// some comment"
        />
+
+   <h2>CodeMirror</h2>
+    <CodeMirror
+      value='// some comment'
+      options={{
+        mode: 'javascript',
+        theme: 'material',
+        lineNumbers: true,
+      }}
+    />
+
 
 </>, document.getElementById('root'));
