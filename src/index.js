@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Ace from "react-ace";
 
-import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
 
@@ -12,6 +13,7 @@ import {UnControlled as CodeMirror} from 'react-codemirror2'
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import codemirror_javascript from "codemirror/mode/javascript/javascript";
+import codemirror_css from "codemirror/mode/css/css";
 
 function onChange(newValue) {
   console.log("change", newValue);
@@ -39,12 +41,28 @@ const javascript_sample = "function rot13(str) {\n" +
     "\n" +
     "console.log(rot13(\"SERR PBQR PNZC\"));\n"
 
-ReactDOM.render(<>
+const css_sample = ".link-button {\n" +
+    "    background-color: transparent;\n" +
+    "    font-family: serif;\n" +
+    "    border: none;\n" +
+    "    cursor: pointer;\n" +
+    "    text-decoration: underline;\n" +
+    "    display: inline;\n" +
+    "    margin: 0;\n" +
+    "    padding: 0;\n" +
+    "}\n" +
+    "\n" +
+    ".link-button:hover,\n" +
+    ".link-button:focus {\n" +
+    "    text-decoration: none;\n" +
+    "}"
 
+ReactDOM.render(<>
+  {/*Ace integration sample: https://github.com/securingsincity/react-ace/blob/main/example/index.js*/}
   <h2>Ace</h2>
   <Ace
       placeholder="Placeholder Text"
-      mode="javascript"
+      mode="css"
       theme="solarized_dark"
       name="blah2"
       onChange={onChange}
@@ -53,7 +71,7 @@ ReactDOM.render(<>
       showGutter={true}
       width={width}
       highlightActiveLine={true}
-      value={javascript_sample}
+      value={css_sample}
       setOptions={{
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
@@ -67,15 +85,15 @@ ReactDOM.render(<>
     <Monaco
          height="50vh"
          width={width}
-         defaultLanguage="javascript"
-         defaultValue={javascript_sample}
+         defaultLanguage="css"
+         defaultValue={css_sample}
        />
 
    <h2>CodeMirror</h2>
     <CodeMirror
-      value={javascript_sample}
+      value={css_sample}
       options={{
-        mode: codemirror_javascript,
+        mode: {codemirror_css},
         theme: 'material',
         lineNumbers: true,
       }}
